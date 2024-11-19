@@ -59,7 +59,8 @@ sudo systemctl enable docker</code></pre>
 
     <h2>8. (Optional) Run Docker as a non-root user</h2>
     <h3>Add your user to the <code>docker</code> group:</h3>
-    <pre><code>sudo usermod -aG docker $USER</code></pre>
+    <pre><code>udo usermod -aG docker jenkins
+        sudo systemctl restart jenkins</code></pre>
     <h3>Log out and back in to apply the changes.</h3>
 
     <h2>Troubleshooting</h2>
