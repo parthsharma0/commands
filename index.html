@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steps to Install Docker on Ubuntu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        pre {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #d6336c;
+        }
+        h1, h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Steps to Install Docker on Ubuntu</h1>
+    <h2>1. Update your system packages</h2>
+    <pre><code>sudo apt-get update
+sudo apt-get upgrade -y</code></pre>
+
+    <h2>2. Remove any older versions of Docker (if any)</h2>
+    <pre><code>sudo apt-get remove docker docker-engine docker.io containerd runc</code></pre>
+
+    <h2>3. Set up the Docker repository</h2>
+    <h3>Install required packages:</h3>
+    <pre><code>sudo apt-get install -y ca-certificates curl gnupg lsb-release</code></pre>
+    <h3>Add Docker’s official GPG key:</h3>
+    <pre><code>sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</code></pre>
+    <h3>Set up the stable Docker repository:</h3>
+    <pre><code>echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</code></pre>
+
+    <h2>4. Update the package index</h2>
+    <pre><code>sudo apt-get update</code></pre>
+
+    <h2>5. Install Docker components</h2>
+    <pre><code>sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+
+    <h2>6. Verify Docker installation</h2>
+    <pre><code>sudo docker --version</code></pre>
+
+    <h2>7. Start and enable Docker</h2>
+    <pre><code>sudo systemctl start docker
+sudo systemctl enable docker</code></pre>
+
+    <h2>8. (Optional) Run Docker as a non-root user</h2>
+    <h3>Add your user to the <code>docker</code> group:</h3>
+    <pre><code>sudo usermod -aG docker $USER</code></pre>
+    <h3>Log out and back in to apply the changes.</h3>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+        <li>If your system’s architecture or Ubuntu version is not supported by Docker's repositories, you might need to use an older Docker version or a manual installation method.</li>
+        <li>Ensure that you are using a supported Ubuntu version (e.g., Ubuntu 20.04, 22.04).</li>
+    </ul>
+</body>
+</html>
